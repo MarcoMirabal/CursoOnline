@@ -1,0 +1,18 @@
+<?php
+    $host = 'A0AFBD11C605\SQLEXPRESS';
+    $bd = 'CursoOnline';
+
+
+    try {
+
+        $conexion = new PDO ("sqlsrv:Server=$host;Database=$bd;", null, null);
+
+
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        echo "Conexión exitosa    :::::::PPPPP";
+
+    } catch (PDOException $ex){
+        echo "Error de conexión: " . $ex->getMessage();
+    }
+?>
