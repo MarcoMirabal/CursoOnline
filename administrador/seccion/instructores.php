@@ -1,5 +1,31 @@
 <?php include("../template/cabecera.php"); ?>
 
+<?php 
+
+$txtIDInstructor=(isset($_POST['txtIDInstructor']))?$_POST['txtIDInstructor']:"";
+$txtNombreInstructor=(isset($_POST['txtNombreInstructor']))?$_POST['txtNombreInstructor']:"";
+$txtApellidoInstructor=(isset($_POST['txtApellidoInstructor']))?$_POST['txtApellidoInstructor']:"";
+$txtEspecialidadInstructor=(isset($_POST['txtEspecialidadInstructor']))?$_POST['txtEspecialidadInstructor']:"";
+$txtEmailInstructor=(isset($_POST['txtEmailInstructor']))?$_POST['txtEmailInstructor']:"";
+$txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
+
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+
+
+
+echo $txtIDInstructor."<br/>";
+echo $txtNombreInstructor."<br/>";
+echo $txtApellidoInstructor."<br/>";
+echo $txtEspecialidadInstructor."<br/>";
+echo $txtEmailInstructor."<br/>";
+echo $txtIDCurso."<br/>";
+
+echo $accion."<br/>";
+
+
+
+?>
+
 <div
     class="col-md-5">
     
@@ -38,7 +64,7 @@
 
     <div class = "form-group">
     <label for="txtIDCurso">Curso Asignado:</label>
-    <input type="email" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingrese el ID del curso asignado">
+    <input type="int" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingrese el ID del curso asignado">
     </div>
 
 
@@ -46,18 +72,24 @@
     <div class="btn-group" role="group" aria-label="Button group name">
     <button
         type="sumbit"
+        name="accion"
+        value="Agregar"
         class="btn btn-success"
     >
         Agregar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Modificar"
         class="btn btn-warning"
     >
         Modificar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Cancelar"
         class="btn btn-info"
     >
         Cancelar
@@ -82,7 +114,37 @@
     class="col-md-7">
 
         Tabla de cursos (muestra los datos de los instructores)
-    
+
+        <div
+            class="table table-bordered"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Especialidad</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Curso asg.</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="">
+                        <td>3</td>
+                        <td>Arturo</td>
+                        <td>Azcuenaga</td>
+                        <td>nada</td>
+                        <td>arturito@ar.com</td>
+                        <td>5</td>
+                        <td>Seleccionar | Borrar </td>
+                    
+                </tbody>
+            </table>
+        </div>
 </div>
 
 <?php include("../template/pie.php"); ?>

@@ -1,4 +1,28 @@
 <?php include("../template/cabecera.php"); ?>
+
+<?php 
+
+$txtIDLeccion=(isset($_POST['txtIDLeccion']))?$_POST['txtIDLeccion']:"";
+$txtTituloLeccion=(isset($_POST['txtTituloLeccion']))?$_POST['txtTituloLeccion']:"";
+$txtContenidoLeccion=(isset($_POST['txtContenidoLeccion']))?$_POST['txtContenidoLeccion']:"";
+$txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
+
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+
+
+echo $txtIDLeccion."<br/>";
+echo $txtTituloLeccion."<br/>";
+echo $txtContenidoLeccion."<br/>";
+echo $txtIDCurso."<br/>";
+
+echo $accion."<br/>";
+
+
+
+
+
+?>
+
 <div
     class="col-md-5">
     
@@ -36,18 +60,24 @@
     <div class="btn-group" role="group" aria-label="Button group name">
     <button
         type="sumbit"
+        name="accion"
+        value="Agregar"
         class="btn btn-success"
     >
         Agregar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Modificar"
         class="btn btn-warning"
     >
         Modificar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Cancelar"
         class="btn btn-info"
     >
         Cancelar
@@ -73,6 +103,35 @@
     class="col-md-7">
 
         Tabla de cursos (muestra los datos de las lecciones)
+
+
+        <div
+            class="table table-bordered"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Contenido</th>
+                        <th scope="col">Curso asg.</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="">
+                        <td>3</td>
+                        <td>Leccion de comer</td>
+                        <td>Agarrar el tenedor y devorar</td>
+                        <td>4</td>
+                        <td>Seleccionar | Borrar </td>
+                    
+                </tbody>
+            </table>
+        </div>
+        
     
 </div>
 

@@ -1,5 +1,19 @@
 <?php include("../template/cabecera.php"); ?>
 
+<?php 
+
+$txtIDEstudiante=(isset($_POST['txtIDEstudiante']))?$_POST['txtIDEstudiante']:"";
+$txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
+
+echo $txtIDEstudiante."<br/>";
+echo $txtIDCurso."<br/>";
+
+echo $accion."<br/>";
+
+
+?>
+
 <div
     class="col-md-5">
     
@@ -24,18 +38,24 @@
     <div class="btn-group" role="group" aria-label="Button group name">
     <button
         type="sumbit"
+        name="accion"
+        value="Agregar"
         class="btn btn-success"
     >
         Agregar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Modificar"
         class="btn btn-warning"
     >
         Modificar
     </button>
     <button
         type="sumbit"
+        name="accion"
+        value="Cancelar"
         class="btn btn-info"
     >
         Cancelar
@@ -61,6 +81,29 @@
 
         Tabla de cursos (muestra los datos de los Cursos y Estudiantes)
     
+        <div
+            class="table table-bordered"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">ID del Estudiante</th>
+                        <th scope="col">ID del Curso</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="">
+                        <td>3</td>
+                        <td>3</td>
+                        <td>Seleccionar | Borrar </td>
+                    
+                </tbody>
+            </table>
+        </div>
+
 </div>
 
 
