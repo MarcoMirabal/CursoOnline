@@ -3,28 +3,46 @@
 <?php 
 
 $txtIDLeccion=(isset($_POST['txtIDLeccion']))?$_POST['txtIDLeccion']:"";
+$txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
+$txtIDTituloLeccion=(isset($_POST['txtIDTituloLeccion']))?$_POST['txtIDTituloLeccion']:"";
 $txtTituloLeccion=(isset($_POST['txtTituloLeccion']))?$_POST['txtTituloLeccion']:"";
 $txtContenidoLeccion=(isset($_POST['txtContenidoLeccion']))?$_POST['txtContenidoLeccion']:"";
-$txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
+
 
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 
-echo $txtIDLeccion."<br/>";
-echo $txtTituloLeccion."<br/>";
-echo $txtContenidoLeccion."<br/>";
-echo $txtIDCurso."<br/>";
-
-echo $accion."<br/>";
+include("../config/bd.php");
 
 
 switch($accion){
 
+    //Tengo una duda importante sobre cómo se van a cargar los datos usando el ID_Lecciones y el ID_TituloLecciones. 
+    // Estaba pensando en crear un nuevo txtIDTituloLecciones, pero la verdad no sé si agregarlo
+    //Bueno, al final lo agregue... como es una clave foránea, tenía que ponerla porque sinó no se relacionaban las tablas.
+    //En todo caso, debería ser automático, pero bueno, el IDTitulo es igual al IDTitloLeccion.
 
-    //INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (1);
-    //INSERT INTO Lecciones(ID_Curso) VALUES (1);
+    //Esto pasa en la tabla Lecciones y la tabla Curso, ya que ambas se modificaron en la 3era forma normal.
+
+
+    //Tiene explicación, al ser una clave primaria, no puedo cambiarle los valores o agregarlos, ya que es
+    //una identidad incremental. Por eso aparece como NULL.
+
+
+    //INSERT INTO TituloLecciones(ID_TituloLecciones, Titlo, Contenido) VALUES (NULL, 'alskdlafd', 'aodfioasdi');
+    //INSERT INTO Lecciones(ID_Lecciones, ID_Curso, ID_TituloLecciones) VALUES (NULL, 1, 1);
 
     case "Agregar";
+
+    $sentenciaSQL = $conexion->prepare("INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (:Titulo, :Contenido);");
+    $sentenciaSQL = $conexion->prepare("INSERT INTO Lecciones(ID_Curso, ID_TituloLecciones) VALUES (:ID_Curso, :ID_TituloLecciones);");
+    $sentenciaSQL->bindParam(':Titulo', $txtTituloLeccion); 
+    $sentenciaSQL->bindParam(':Contenido', $txtContenidoLeccion); 
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
+    $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTitulolLeccion); 
+    $sentenciaSQL->execute();
+
+
     echo "presionado boton Agregar";
     break;
 
@@ -57,6 +75,12 @@ switch($accion){
     <label for="txtIDLeccion">ID:</label>
     <input type="text" class="form-control" name="txtIDLeccion" id="txtIDLeccion" placeholder="ID">
     </div>
+
+    <div class = "form-group">
+    <label for="txtIDTituloLeccion">ID Titulo:</label>
+    <input type="text" class="form-control" name="txtIDTituloLeccion" id="txtIDTituloLeccion" placeholder="ID TituloLeccion">
+    </div>
+
 
     <div class = "form-group">
     <label for="txtTituloLeccion">Titulo:</label>
@@ -135,6 +159,8 @@ switch($accion){
                         <th scope="col">Titulo</th>
                         <th scope="col">Contenido</th>
                         <th scope="col">Curso asg.</th>
+                        <th scope="col">IDTitulo</th>
+
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -144,6 +170,7 @@ switch($accion){
                         <td>Leccion de comer</td>
                         <td>Agarrar el tenedor y devorar</td>
                         <td>4</td>
+                        <td>3</td>
                         <td>Seleccionar | Borrar </td>
                     
                 </tbody>

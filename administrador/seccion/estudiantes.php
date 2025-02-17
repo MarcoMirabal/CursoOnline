@@ -13,26 +13,33 @@ $txtFechaAsignacionEstudiante=(isset($_POST['txtFechaAsignacionEstudiante']))?$_
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 
-echo $txtIDEstudiante."<br/>";
-echo $txtNombreEstudiante."<br/>";
-echo $txtApellidoEstudiante."<br/>";
-echo $txtnumCelularEstudiante."<br/>";
-echo $txtEmailEstudiante."<br/>";
-echo $txtCalificacionEstudiante."<br/>";
-echo $txtFechaAsignacionEstudiante."<br/>";
 
-echo $accion."<br/>";
-
-
+include("../config/bd.php");
 
 
 switch($accion){
 
 
-    //INSERT INTO Estudiantes(Email, Calificacion, FechaAsignacion) VALUES ('guilled@gmail.com', 8, '2023-11-15');
+    //INSERT INTO Estudiantes(ID_Estudiantes, Email, Calificacion, FechaAsignacion) VALUES (NULL, 'guilled@gmail.com', 8, '2023-11-15');
     //INSERT INTO NombreEstudiante(ID_Estudiante, NombreEstudiante) VALUES (1, 'Eduardo');
     //INSERT INTO ApellidoEstudiante(ID_Estudiante, ApellidoEstudiante) VALUES (1, 'Alarcón');
     //INSERT INTO numCelularEstudiante(ID_Estudiante, numCelularEstudiante) VALUES (1, '1193293931');
+
+
+    $sentenciaSQL = $conexion->prepare("INSERT INTO Estudiantes(Email, Calificacion, FechaAsignacion) VALUES (:Email, :Calificacion, :FechaAsignacion);");
+    $sentenciaSQL = $conexion->prepare("INSERT INTO NombreEstudiante(ID_Estudiante, NombreEstudiante) VALUES (:ID_Estudiante, :NombreEstudiante);");
+    $sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoEstudiante(ID_Estudiante, ApellidoEstudiante) VALUES (:ID_Estudiante, :ApellidoEstudiante);");
+    $sentenciaSQL = $conexion->prepare("INSERT INTO numCelularEstudiante(ID_Estudiante, numCelularEstudiante) VALUES (:ID_Estudiante, :numCelularEstudiante);");
+    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
+    $sentenciaSQL->bindParam(':NombreEstudiante', $txtNombreEstudiante); 
+    $sentenciaSQL->bindParam(':ApellidoEstudiante', $txtApellidoEstudiante); 
+    $sentenciaSQL->bindParam(':numCelularEstudiante', $txtnumCelularEstudiante); 
+    $sentenciaSQL->bindParam(':Email', $txtEmailEstudiante); 
+    $sentenciaSQL->bindParam(':Calificacion', $txtCalificacionEstudiante); 
+    $sentenciaSQL->bindParam(':FechaAsignacion', $txtFechaAsignacionEstudiante);
+    $sentenciaSQL->execute();
+
+
 
     case "Agregar";
     echo "presionado boton Agregar";

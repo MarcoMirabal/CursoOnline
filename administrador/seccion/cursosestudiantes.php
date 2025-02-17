@@ -6,13 +6,22 @@ $txtIDEstudiante=(isset($_POST['txtIDEstudiante']))?$_POST['txtIDEstudiante']:""
 $txtIDCurso=(isset($_POST['txtIDCurso']))?$_POST['txtIDCurso']:"";
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
-echo $txtIDEstudiante."<br/>";
-echo $txtIDCurso."<br/>";
 
-echo $accion."<br/>";
+include("../config/bd.php");
+
+
 
 
 switch($accion){
+
+    //INSERT INTO CursoEstudiante(ID_Estudiantes, ID_Curso) VALUES (1, 1);
+
+    $sentenciaSQL = $conexion->prepare("INSERT INTO CursoEstudiante(ID_Estudiante, ID_Curso) VALUES (:ID_Estudiante, :ID_Curso);");
+    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
+    
+    $sentenciaSQL->execute();
+
 
 
     case "Agregar";
