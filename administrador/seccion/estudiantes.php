@@ -30,7 +30,9 @@ switch($accion){
 
 
     //INSERT INTO Estudiantes(Email, Calificacion, FechaAsignacion) VALUES ('guilled@gmail.com', 8, '2023-11-15');
-
+    //INSERT INTO NombreEstudiante(ID_Estudiante, NombreEstudiante) VALUES (1, 'Eduardo');
+    //INSERT INTO ApellidoEstudiante(ID_Estudiante, ApellidoEstudiante) VALUES (1, 'Alarcón');
+    //INSERT INTO numCelularEstudiante(ID_Estudiante, numCelularEstudiante) VALUES (1, '1193293931');
 
     case "Agregar";
     echo "presionado boton Agregar";

@@ -21,6 +21,9 @@ echo $accion."<br/>";
 switch($accion){
 
 
+    //INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (1);
+    //INSERT INTO Lecciones(ID_Curso) VALUES (1);
+
     case "Agregar";
     echo "presionado boton Agregar";
     break;
