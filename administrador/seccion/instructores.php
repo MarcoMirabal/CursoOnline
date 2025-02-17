@@ -17,23 +17,40 @@ include("../config/bd.php");
 
 switch($accion){
 
-        //INSERT INTO NombreInstructor(ID_Instructor, NombreInstructor) VALUES (1, 'Ignacio');
-        //INSERT INTO ApellidoInstructor(ID_Instructor, ApellidoInstructor) VALUES (1, 'Ferro');
-        //INSERT INTO Instructores(ID_Curso, Especialidad, Email) VALUES (NULL, 'igna@coso.com', 'tecnico en las artes inexistentes');
-
-    $sentenciaSQL = $conexion->prepare("INSERT INTO NombreInstructor(ID_Instructor, NombreInstructor) VALUES (:ID_Instructor, :NombreInstructor);");
-    $sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoInstructor(ID_Instructor, ApellidoInstructor) VALUES (:ID_Instructor, :ApellidoInstructor);");
-    $sentenciaSQL = $conexion->prepare("INSERT INTO Instructores(ID_Curso, Especialidad, Email) VALUES (:ID_Curso, :Especialidad, :Email);"); 
-    $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor); 
-    $sentenciaSQL->bindParam(':NombreInstructor', $txtNombreInstructor); 
-    $sentenciaSQL->bindParam(':ApellidoInstructor', $txtApellidoInstructor); 
-    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
-    $sentenciaSQL->bindParam(':Especialidad', $txtEspecialidadInstructor); 
-    $sentenciaSQL->bindParam(':Email', $txtEmailInstructor); 
-    $sentenciaSQL->execute();
+       
 
 
         case "Agregar";
+
+
+ //INSERT INTO NombreInstructor(ID_Instructor, NombreInstructor) VALUES (1, 'Ignacio');
+        //INSERT INTO ApellidoInstructor(ID_Instructor, ApellidoInstructor) VALUES (1, 'Ferro');
+        //INSERT INTO Instructores(ID_Curso, Especialidad, Email) VALUES (NULL, 'igna@coso.com', 'tecnico en las artes inexistentes');
+
+        $sentenciaSQL = $conexion->prepare("INSERT INTO Instructores(ID_Curso, Especialidad, Email) VALUES (:ID_Curso, :Especialidad, :Email);"); 
+        $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
+        $sentenciaSQL->bindParam(':Especialidad', $txtEspecialidadInstructor); 
+        $sentenciaSQL->bindParam(':Email', $txtEmailInstructor); 
+        
+        $sentenciaSQL->execute();
+
+        $sentenciaSQL = $conexion->prepare("INSERT INTO NombreInstructor(ID_Instructor, NombreInstructor) VALUES (:ID_Instructor, :NombreInstructor);");
+        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor); 
+        $sentenciaSQL->bindParam(':NombreInstructor', $txtNombreInstructor); 
+
+        $sentenciaSQL->execute();
+
+        $sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoInstructor(ID_Instructor, ApellidoInstructor) VALUES (:ID_Instructor, :ApellidoInstructor);");
+       
+        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor); 
+        $sentenciaSQL->bindParam(':ApellidoInstructor', $txtApellidoInstructor); 
+        
+        $sentenciaSQL->execute();
+
+
+
+
+
         echo "presionado boton Agregar";
         break;
 

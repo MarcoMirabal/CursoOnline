@@ -14,17 +14,22 @@ include("../config/bd.php");
 
 switch($accion){
 
-    //INSERT INTO CursoEstudiante(ID_Estudiantes, ID_Curso) VALUES (1, 1);
-
-    $sentenciaSQL = $conexion->prepare("INSERT INTO CursoEstudiante(ID_Estudiante, ID_Curso) VALUES (:ID_Estudiante, :ID_Curso);");
-    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
-    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
     
-    $sentenciaSQL->execute();
 
 
 
     case "Agregar";
+
+//INSERT INTO CursoEstudiante(ID_Estudiantes, ID_Curso) VALUES (1, 1);
+
+$sentenciaSQL = $conexion->prepare("INSERT INTO CursoEstudiante(ID_Estudiante, ID_Curso) VALUES (:ID_Estudiante, :ID_Curso);");
+$sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
+$sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
+
+$sentenciaSQL->execute();
+
+
+
     echo "presionado boton Agregar";
     break;
 
