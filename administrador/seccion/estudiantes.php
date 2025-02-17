@@ -24,6 +24,31 @@ echo $txtFechaAsignacionEstudiante."<br/>";
 echo $accion."<br/>";
 
 
+
+
+switch($accion){
+
+
+    //INSERT INTO Estudiantes(Email, Calificacion, FechaAsignacion) VALUES ('guilled@gmail.com', 8, '2023-11-15');
+
+
+    case "Agregar";
+    echo "presionado boton Agregar";
+    break;
+
+    case "Modificar";
+    echo "presionado boton Modificar";
+    break;
+
+    case "Cancelar";
+    echo "presionado boton Cancelar";
+    break;
+}
+
+
+
+
+
 ?>
 
 <div

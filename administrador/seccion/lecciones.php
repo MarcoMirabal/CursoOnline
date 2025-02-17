@@ -18,6 +18,21 @@ echo $txtIDCurso."<br/>";
 echo $accion."<br/>";
 
 
+switch($accion){
+
+
+    case "Agregar";
+    echo "presionado boton Agregar";
+    break;
+
+    case "Modificar";
+    echo "presionado boton Modificar";
+    break;
+
+    case "Cancelar";
+    echo "presionado boton Cancelar";
+    break;
+}
 
 
 
