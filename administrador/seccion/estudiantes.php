@@ -73,21 +73,19 @@ switch($accion){
 }
 
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM Estudiantes");
+$sentenciaSQL = $conexion->prepare("SELECT e.ID_Estudiante, ne.NombreEstudiante, ae.ApellidoEstudiante, 
+                                    ce.numCelularEstudiante, e.Email, e.Calificacion, e.FechaAsignacion
+                                    FROM Estudiantes AS e
+                                    INNER JOIN NombreEstudiante AS ne
+                                    ON e.ID_Estudiante = ne.ID_Estudiante
+                                    INNER JOIN ApellidoEstudiante AS ae
+                                    ON e.ID_Estudiante = ae.ID_Estudiante
+                                    INNER JOIN numCelularEstudiante AS ce
+                                    ON e.ID_Estudiante = ce.ID_Estudiante;");
 $sentenciaSQL->execute();
 $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM NombreEstudiante");
-$sentenciaSQL->execute();
-$listaNombreEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM ApellidoEstudiante");
-$sentenciaSQL->execute();
-$listaApellidoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaSQL = $conexion->prepare("SELECT * FROM numCelularEstudiante");
-$sentenciaSQL->execute();
-$listanumCelularEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 
@@ -95,7 +93,7 @@ $listanumCelularEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div
-    class="col-md-5">
+    class="col-md-4">
     
     formulario de agregar/insertar estudiantes
 
@@ -182,7 +180,7 @@ $listanumCelularEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <div
-    class="col-md-7">
+    class="col-md-8">
 
         Tabla de cursos (muestra los datos de los estudiantes)
 
@@ -205,16 +203,24 @@ $listanumCelularEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach($listaEstudiantes as $Estudiantes){
+                        
+                        ?>
                     <tr class="">
-                        <td>3</td>
-                        <td>Coso</td>
-                        <td>Cosito</td>
-                        <td>11123123123</td>
-                        <td>cosito@cosito.com</td>
-                        <td>2</td>
-                        <td>10/10/2003</td>
+                        <td><?php echo $Estudiantes['ID_Estudiante']?></td>
+                        <td><?php echo $Estudiantes['NombreEstudiante']?></td>
+                        <td><?php echo $Estudiantes['ApellidoEstudiante']?></td>
+                        <td><?php echo $Estudiantes['numCelularEstudiante']?></td>
+                        <td><?php echo $Estudiantes['Email']?></td>
+                        <td><?php echo $Estudiantes['Calificacion']?></td>
+                        <td><?php echo $Estudiantes['FechaAsignacion']?></td>
                         <td>Seleccionar | Borrar </td>
-                    
+                </tr>
+                
+                <?php }
+                        
+                        ?>
                 </tbody>
             </table>
         </div>

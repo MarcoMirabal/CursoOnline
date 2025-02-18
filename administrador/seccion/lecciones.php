@@ -57,11 +57,13 @@ switch($accion){
     break;
 }
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM TituloLecciones");
-$sentenciaSQL->execute();
-$listatitulolecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM Lecciones");
+
+$sentenciaSQL = $conexion->prepare("SELECT l.ID_Leccion, l.ID_TituloLecciones, 
+                                    l.ID_Curso, tl.Titulo, tl.Contenido
+                                    FROM Lecciones AS l
+                                    INNER JOIN TituloLecciones AS tl 
+                                    ON tl.ID_TituloLecciones = l.ID_TituloLecciones;");
 $sentenciaSQL->execute();
 $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
@@ -73,7 +75,7 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div
-    class="col-md-5">
+    class="col-md-4">
     
     formulario de agregar/insertar lecciones
 
@@ -94,6 +96,11 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <input type="text" class="form-control" name="txtIDTituloLeccion" id="txtIDTituloLeccion" placeholder="ID TituloLeccion">
     </div>
 
+    <div class = "form-group">
+    <label for="txtIDCurso">Curso asignado:</label>
+    <input type="int" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingresar ID del curso asignado">
+    </div>
+
 
     <div class = "form-group">
     <label for="txtTituloLeccion">Titulo:</label>
@@ -105,10 +112,7 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <input type="text" class="form-control" name="txtContenidoLeccion" id="txtContenidoLeccion" placeholder="Contenido de la Leccion">
     </div>
 
-    <div class = "form-group">
-    <label for="txtIDCurso">Curso asignado:</label>
-    <input type="int" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingresar ID del curso asignado">
-    </div>
+    
 
 
 
@@ -155,7 +159,7 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <div
-    class="col-md-7">
+    class="col-md-8">
 
         Tabla de cursos (muestra los datos de las lecciones)
 
@@ -166,30 +170,47 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
             <table
                 class="table table-primary"
             >
+            
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">ID Titulo</th>
+                        <th scope="col">Curso asg.</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Contenido</th>
-                        <th scope="col">Curso asg.</th>
-                        <th scope="col">IDTitulo</th>
-
+                        
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
+                
+
+
+
+
                 <tbody>
+                <?php foreach($listaLecciones as $Lecciones){
+                ?>
+                
+                
+                
                     <tr class="">
-                        <td>3</td>
-                        <td>Leccion de comer</td>
-                        <td>Agarrar el tenedor y devorar</td>
-                        <td>4</td>
-                        <td>3</td>
+                        <td><?php echo $Lecciones['ID_Leccion']?></td>
+                        <td><?php echo $Lecciones['ID_TituloLecciones']?></td>
+                        <td><?php echo $Lecciones['ID_Curso']?></td>
+                        <td><?php echo $Lecciones['Titulo']?></td>
+                        <td><?php echo $Lecciones['Contenido']?></td>
                         <td>Seleccionar | Borrar </td>
-                    
+                    </tr>
+                
+                <?php } 
+                    ?>
+
                 </tbody>
             </table>
         </div>
         
+
+                
     
 </div>
 

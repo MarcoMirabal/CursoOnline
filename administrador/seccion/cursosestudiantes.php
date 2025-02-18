@@ -138,11 +138,21 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach($listaCursoEstudiante as $CursoEstudiante){
+                        
+                        ?>
+
+
+
                     <tr class="">
-                        <td>3</td>
-                        <td>3</td>
+                        <td><?php echo $CursoEstudiante['ID_Estudiante']?></td>
+                        <td><?php echo $CursoEstudiante['ID_Curso']?></td>
                         <td>Seleccionar | Borrar </td>
                     
+                    </tr>
+
+                <?php } ?>
                 </tbody>
             </table>
         </div>

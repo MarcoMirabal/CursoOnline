@@ -48,11 +48,11 @@ switch($accion){
 
 
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM TituloCurso");
-$sentenciaSQL->execute();
-$listaTituloCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM Curso");
+$sentenciaSQL = $conexion->prepare("SELECT c.ID_Curso, c.ID_TituloCurso, tc.Titulo, tc.Descripcion
+                                    FROM Curso AS c
+                                    INNER JOIN TituloCurso AS tc
+                                    ON tc.ID_TituloCurso = c.ID_TituloCurso;");
 $sentenciaSQL->execute();
 $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
@@ -68,7 +68,7 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 <div
-    class="col-md-5">
+    class="col-md-4">
     
     formulario de agregar/insertar cursos
 
@@ -146,7 +146,7 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <div
-    class="col-md-7">
+    class="col-md-8">
 
         Tabla de cursos (muestra los datos de los cursos)
 
@@ -159,6 +159,7 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">ID Titulo</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Acciones</th>
@@ -166,13 +167,22 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach($listaCurso as $Cursos){
+                ?>
+
+
                     <tr class="">
-                        <td>3</td>
-                        <td>3</td>
-                        <td>Curso de la comida</td>
-                        <td>CURSO SOSBRE TODO LO QUE TIENE QUE VER CON COMER Y ESO</td>
+                        <td><?php echo $Cursos['ID_Curso']?></td>
+                        <td><?php echo $Cursos['ID_TituloCurso']?></td>
+                        <td><?php echo $Cursos['Titulo']?></td>
+                        <td><?php echo $Cursos['Descripcion']?></td>
                         <td>Seleccionar | Borrar </td>
                     
+                    </tr>
+
+                        <?php }?>
+
                 </tbody>
             </table>
         </div>

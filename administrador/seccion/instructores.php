@@ -64,17 +64,17 @@ switch($accion){
 }
 
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM Instructores");
+$sentenciaSQL = $conexion->prepare("SELECT i.ID_Instructor, ni.NombreInstructor, ai.ApellidoInstructor, 
+                                    i.Especialidad, i.Email, i.ID_Curso
+                                    FROM Instructores AS i 
+                                    INNER JOIN NombreInstructor AS ni
+                                    ON i.ID_Instructor = ni.ID_Instructor
+                                    INNER JOIN ApellidoInstructor AS ai
+                                    ON i.ID_Instructor = ai.ID_Instructor;");
 $sentenciaSQL->execute();
 $listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM NombreInstructor");
-$sentenciaSQL->execute();
-$listaNombreInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
-$sentenciaSQL = $conexion->prepare("SELECT * FROM ApellidoInstructor");
-$sentenciaSQL->execute();
-$listaApellidoInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 
@@ -169,6 +169,9 @@ $listaApellidoInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
         Tabla de cursos (muestra los datos de los instructores)
 
+        
+
+
         <div
             class="table table-bordered"
         >
@@ -187,14 +190,26 @@ $listaApellidoInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach($listaInstructores as $Instructores){
+                        
+                ?>
+
+
+
                     <tr class="">
-                        <td>3</td>
-                        <td>Arturo</td>
-                        <td>Azcuenaga</td>
-                        <td>nada</td>
-                        <td>arturito@ar.com</td>
-                        <td>5</td>
+                    <td><?php echo $Instructores['ID_Instructor']?></td>
+                    <td><?php echo $Instructores['NombreInstructor']?></td>
+                    <td><?php echo $Instructores['ApellidoInstructor']?></td>
+                    <td><?php echo $Instructores['Especialidad']?></td>
+                    <td><?php echo $Instructores['Email']?></td>
+                    <td><?php echo $Instructores['ID_Curso']?></td>
                         <td>Seleccionar | Borrar </td>
+                    </tr>
+
+                        <?php } 
+                        
+                    ?>
                     
                 </tbody>
             </table>
