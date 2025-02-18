@@ -54,8 +54,6 @@ switch($accion){
     $sentenciaSQL->execute();
     $sentenciaSQL = $conexion->prepare("INSERT INTO numCelularEstudiante(numCelularEstudiante, ID_Estudiante) VALUES (:numCelularEstudiante, :ID_Estudiante);");
     $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
-    
-
     $sentenciaSQL->bindParam(':numCelularEstudiante', $txtnumCelularEstudiante); 
 
     $sentenciaSQL->execute();

@@ -35,9 +35,10 @@ switch($accion){
     case "Agregar";
 
     $sentenciaSQL = $conexion->prepare("INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (:Titulo, :Contenido);");
-    $sentenciaSQL = $conexion->prepare("INSERT INTO Lecciones(ID_Curso, ID_TituloLecciones) VALUES (:ID_Curso, :ID_TituloLecciones);");
     $sentenciaSQL->bindParam(':Titulo', $txtTituloLeccion); 
     $sentenciaSQL->bindParam(':Contenido', $txtContenidoLeccion); 
+
+    $sentenciaSQL = $conexion->prepare("INSERT INTO Lecciones(ID_Curso, ID_TituloLecciones) VALUES (:ID_Curso, :ID_TituloLecciones);");
     $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
     $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTitulolLeccion); 
     $sentenciaSQL->execute();
