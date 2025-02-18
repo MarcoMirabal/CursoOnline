@@ -204,7 +204,24 @@ $listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $Instructores['Especialidad']?></td>
                     <td><?php echo $Instructores['Email']?></td>
                     <td><?php echo $Instructores['ID_Curso']?></td>
-                        <td>Seleccionar | Borrar </td>
+
+
+
+                    <td>
+                            
+                            Seleccionar | Borrar 
+
+                            <form method="post">
+
+                            <input type="text" name="txtIDInstructor" id="txtIDInstructor" value="<?php echo $Instructores['ID_Instructor']?>"/>
+                            
+                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+
+                            </form>
+
+                        </td>
+
+
                     </tr>
 
                         <?php } 

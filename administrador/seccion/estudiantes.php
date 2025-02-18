@@ -215,7 +215,28 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $Estudiantes['Email']?></td>
                         <td><?php echo $Estudiantes['Calificacion']?></td>
                         <td><?php echo $Estudiantes['FechaAsignacion']?></td>
-                        <td>Seleccionar | Borrar </td>
+
+
+
+
+                         <td>
+                            
+                            Seleccionar | Borrar 
+
+                            <form method="post">
+
+                            <input type="text" name="txtIDEstudiante" id="txtIDEstudiante" value="<?php echo $Estudiantes['ID_Estudiante']?>"/>
+                            
+                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+
+                            </form>
+
+                        </td>
+
+
+
+
+
                 </tr>
                 
                 <?php }
