@@ -73,6 +73,22 @@ switch($accion){
 }
 
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM Estudiantes");
+$sentenciaSQL->execute();
+$listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM NombreEstudiante");
+$sentenciaSQL->execute();
+$listaNombreEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM ApellidoEstudiante");
+$sentenciaSQL->execute();
+$listaApellidoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM numCelularEstudiante");
+$sentenciaSQL->execute();
+$listanumCelularEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 

@@ -22,9 +22,7 @@ switch($accion){
     //INSERT INTO Curso(ID_Curso, ID_TituloCurso) VALUES (NULL, 1);
     //INSERT INTO TituloCurso(ID_TituloCurso, Titulo, Descripcion) VALUES (NULL, 'Curso 1', 'No se que va pero ok');
 
-    $sentenciaSQL = $conexion->prepare("INSERT INTO Curso(ID_TituloCurso) VALUES (:ID_TituloCurso);");
-    $sentenciaSQL->bindParam(':ID_TituloCurso', $txtIDTituloCurso);
-    $sentenciaSQL->execute();
+   
     $sentenciaSQL = $conexion->prepare("INSERT INTO TituloCurso(Titulo, Descripcion) VALUES (:Titulo, :Descripcion);");
 
     $sentenciaSQL->bindParam(':Titulo', $txtTituloCurso);
@@ -32,6 +30,9 @@ switch($accion){
     $sentenciaSQL->execute();
 
 
+    $sentenciaSQL = $conexion->prepare("INSERT INTO Curso(ID_TituloCurso) VALUES (:ID_TituloCurso);");
+    $sentenciaSQL->bindParam(':ID_TituloCurso', $txtIDTituloCurso);
+    $sentenciaSQL->execute();
 
     echo "presionado boton Agregar";
     break;
@@ -47,7 +48,13 @@ switch($accion){
 
 
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM TituloCurso");
+$sentenciaSQL->execute();
+$listaTituloCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM Curso");
+$sentenciaSQL->execute();
+$listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 

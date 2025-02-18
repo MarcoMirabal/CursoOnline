@@ -37,6 +37,7 @@ switch($accion){
     $sentenciaSQL = $conexion->prepare("INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (:Titulo, :Contenido);");
     $sentenciaSQL->bindParam(':Titulo', $txtTituloLeccion); 
     $sentenciaSQL->bindParam(':Contenido', $txtContenidoLeccion); 
+    $sentenciaSQL->execute();
 
     $sentenciaSQL = $conexion->prepare("INSERT INTO Lecciones(ID_Curso, ID_TituloLecciones) VALUES (:ID_Curso, :ID_TituloLecciones);");
     $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
@@ -55,6 +56,17 @@ switch($accion){
     echo "presionado boton Cancelar";
     break;
 }
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM TituloLecciones");
+$sentenciaSQL->execute();
+$listatitulolecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM Lecciones");
+$sentenciaSQL->execute();
+$listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 
 

@@ -64,7 +64,17 @@ switch($accion){
 }
 
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM Instructores");
+$sentenciaSQL->execute();
+$listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM NombreInstructor");
+$sentenciaSQL->execute();
+$listaNombreInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSQL = $conexion->prepare("SELECT * FROM ApellidoInstructor");
+$sentenciaSQL->execute();
+$listaApellidoInstructor=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 

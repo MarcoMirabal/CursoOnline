@@ -43,6 +43,9 @@ $sentenciaSQL->execute();
 }
 
 
+$sentenciaSQL = $conexion->prepare("SELECT * FROM CursoEstudiante");
+$sentenciaSQL->execute();
+$listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 
