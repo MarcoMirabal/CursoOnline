@@ -28,6 +28,7 @@ switch($accion){
     $sentenciaSQL->bindParam(':Titulo', $txtTituloCurso);
     $sentenciaSQL->bindParam(':Descripcion', $txtDescripcionCurso); 
     $sentenciaSQL->execute();
+    
     $lastID = $conexion->lastInsertId();
 
     $sentenciaSQL = $conexion->prepare("INSERT INTO Curso(ID_TituloCurso) VALUES (:ID_TituloCurso);");

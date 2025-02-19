@@ -277,3 +277,45 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php include("../template/pie.php"); ?>
+
+
+
+
+
+
+
+
+<?php
+//Código usando el lastID:
+
+
+/*
+1. Insertar en la tabla Estudiantes y obtener el ID del estudiante
+$sentenciaSQL = $conexion->prepare("INSERT INTO Estudiantes(Email, Calificacion, FechaAsignacion) VALUES (:Email, :Calificacion, :FechaAsignacion);");
+$sentenciaSQL->bindParam(':Email', $txtEmailEstudiante); 
+$sentenciaSQL->bindParam(':Calificacion', $txtCalificacionEstudiante); 
+$sentenciaSQL->bindParam(':FechaAsignacion', $txtFechaAsignacionEstudiante);
+$sentenciaSQL->execute();
+
+2. Obtener el ID_Estudiante generado (último ID insertado)
+$lastID = $conexion->lastInsertId();  // Esto obtiene el último ID insertado en la tabla Estudiantes
+
+3. Insertar en la tabla NombreEstudiante con el ID_Estudiante generado
+$sentenciaSQL = $conexion->prepare("INSERT INTO NombreEstudiante(NombreEstudiante, ID_Estudiante) VALUES (:NombreEstudiante, :ID_Estudiante);");
+$sentenciaSQL->bindParam(':ID_Estudiante', $lastID);  // Usamos el ID_Estudiante generado
+$sentenciaSQL->bindParam(':NombreEstudiante', $txtNombreEstudiante); 
+$sentenciaSQL->execute(); 
+
+4. Insertar en la tabla ApellidoEstudiante con el ID_Estudiante generado
+$sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoEstudiante(ApellidoEstudiante, ID_Estudiante) VALUES (:ApellidoEstudiante, :ID_Estudiante);");
+$sentenciaSQL->bindParam(':ID_Estudiante', $lastID);  // Usamos el ID_Estudiante generado
+$sentenciaSQL->bindParam(':ApellidoEstudiante', $txtApellidoEstudiante);
+$sentenciaSQL->execute();
+
+5. Insertar en la tabla numCelularEstudiante con el ID_Estudiante generado
+$sentenciaSQL = $conexion->prepare("INSERT INTO numCelularEstudiante(numCelularEstudiante, ID_Estudiante) VALUES (:numCelularEstudiante, :ID_Estudiante);");
+$sentenciaSQL->bindParam(':ID_Estudiante', $lastID);  // Usamos el ID_Estudiante generado
+$sentenciaSQL->bindParam(':numCelularEstudiante', $txtnumCelularEstudiante); 
+$sentenciaSQL->execute(); 
+ */
+?>
