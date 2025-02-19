@@ -38,22 +38,25 @@ switch($accion){
     $sentenciaSQL->bindParam(':Calificacion', $txtCalificacionEstudiante); 
     $sentenciaSQL->bindParam(':FechaAsignacion', $txtFechaAsignacionEstudiante);
 
-    
-    
+
     $sentenciaSQL->execute();
 
-    $sentenciaSQL = $conexion->prepare("INSERT INTO NombreEstudiante(NombreEstudiante, ID_Estudiante) VALUES (:NombreEstudiante, :ID_Estudiante);");
-    $sentenciaSQL->bindParam(':NombreEstudiante', $txtNombreEstudiante); 
-    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+    $lastID = $conexion->lastInsertId();
 
+    $sentenciaSQL = $conexion->prepare("INSERT INTO NombreEstudiante(NombreEstudiante, ID_Estudiante) VALUES (:NombreEstudiante, :ID_Estudiante);");
+    $sentenciaSQL->bindParam(':ID_Estudiante', $lastID);
+    $sentenciaSQL->bindParam(':NombreEstudiante', $txtNombreEstudiante); 
     $sentenciaSQL->execute(); 
+
+
+
     $sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoEstudiante(ApellidoEstudiante, ID_Estudiante) VALUES (:ApellidoEstudiante, :ID_Estudiante);");
-    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+    $sentenciaSQL->bindParam(':ID_Estudiante', $lastID);
     $sentenciaSQL->bindParam(':ApellidoEstudiante', $txtApellidoEstudiante);
     
     $sentenciaSQL->execute();
     $sentenciaSQL = $conexion->prepare("INSERT INTO numCelularEstudiante(numCelularEstudiante, ID_Estudiante) VALUES (:numCelularEstudiante, :ID_Estudiante);");
-    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante); 
+    $sentenciaSQL->bindParam(':ID_Estudiante', $lastID); 
     $sentenciaSQL->bindParam(':numCelularEstudiante', $txtnumCelularEstudiante); 
 
     $sentenciaSQL->execute();
@@ -70,6 +73,29 @@ switch($accion){
     case "Cancelar";
     echo "presionado boton Cancelar";
     break;
+
+    case "Seleccionar";
+   // echo "presionado boton Seleccionar";
+    break;
+
+    case "Borrar";
+   // echo "presionado boton Borrar";
+   
+   $sentenciaSQL = $conexion->prepare("DELETE FROM NombreEstudiante WHERE ID_Estudiante = :ID_Estudiante;");
+   $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+   $sentenciaSQL->execute();   
+   $sentenciaSQL = $conexion->prepare("DELETE FROM ApellidoEstudiante WHERE ID_Estudiante = :ID_Estudiante;");
+   $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+   $sentenciaSQL->execute();   
+   $sentenciaSQL = $conexion->prepare("DELETE FROM numCelularEstudiante WHERE ID_Estudiante = :ID_Estudiante;");
+   $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+   $sentenciaSQL->execute();   
+   $sentenciaSQL = $conexion->prepare("DELETE FROM Estudiantes WHERE ID_Estudiante = :ID_Estudiante;");
+   $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
+   $sentenciaSQL->execute();   
+    break;
+
+
 }
 
 
@@ -120,7 +146,7 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 <div class = "form-group">
 <label for="txtnumCelularEstudiante">Numero Celular:</label>
-<input type="int" class="form-control" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
+<input type="tel" class="form-control" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
 </div>
 
 <div class = "form-group">
@@ -135,7 +161,7 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 <div class = "form-group">
 <label for="txtFechaAsignacionEstudiante">FechaAsignacion:</label>
-<input type="text" class="form-control" name="txtFechaAsignacionEstudiante" id="txtFechaAsignacionEstudiante" placeholder="Fecha de Asignacion de la Calificacion">
+<input type="date" class="form-control" name="txtFechaAsignacionEstudiante" id="txtFechaAsignacionEstudiante" placeholder="Fecha de Asignacion de la Calificacion">
 </div>
 
 <div class="btn-group" role="group" aria-label="Button group name">
@@ -225,9 +251,11 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                             <form method="post">
 
-                            <input type="text" name="txtIDEstudiante" id="txtIDEstudiante" value="<?php echo $Estudiantes['ID_Estudiante']?>"/>
+                            <input type="hidden" name="txtIDEstudiante" id="txtIDEstudiante" value="<?php echo $Estudiantes['ID_Estudiante']?>"/>
                             
-                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+                            <button type="sumbit" name="accion" value="Seleccionar" class="btn btn-primary">Seleccionar</button>
+
+                            <button type="sumbit" name="accion" value="Borrar" class="btn btn-danger">Borrar</button>
 
                             </form>
 

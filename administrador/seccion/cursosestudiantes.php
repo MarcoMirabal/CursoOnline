@@ -40,6 +40,17 @@ $sentenciaSQL->execute();
     case "Cancelar";
     echo "presionado boton Cancelar";
     break;
+
+    case "Seleccionar";
+   // echo "presionado boton Seleccionar";
+    break;
+
+    case "Borrar";
+   // echo "presionado boton Borrar";
+   $sentenciaSQL = $conexion->prepare("DELETE FROM CursoEstudiante WHERE ID_Curso = :ID_Curso;");
+   $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+   $sentenciaSQL->execute();   
+    break;
 }
 
 
@@ -159,9 +170,11 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                             <form method="post">
 
-                            <input type="text" name="txtIDCurso" id="txtIDCurso" value="<?php echo $CursoEstudiante['ID_Curso']?>"/>
+                            <input type="hidden" name="txtIDCurso" id="txtIDCurso" value="<?php echo $CursoEstudiante['ID_Curso']?>"/>
                             
-                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+                            <button type="sumbit" name="accion" value="Seleccionar" class="btn btn-primary">Seleccionar</button>
+
+                            <button type="sumbit" name="accion" value="Borrar" class="btn btn-danger">Borrar</button>
 
                             </form>
 

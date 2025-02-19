@@ -34,15 +34,27 @@ switch($accion){
 
     case "Agregar";
 
-    $sentenciaSQL = $conexion->prepare("INSERT INTO TituloLecciones(Titlo, Contenido) VALUES (:Titulo, :Contenido);");
+    $sentenciaSQL = $conexion->prepare("INSERT INTO TituloLecciones(Titulo, Contenido) VALUES (:Titulo, :Contenido);");
     $sentenciaSQL->bindParam(':Titulo', $txtTituloLeccion); 
     $sentenciaSQL->bindParam(':Contenido', $txtContenidoLeccion); 
     $sentenciaSQL->execute();
 
+    $lastID = $conexion->lastInsertId();
+
     $sentenciaSQL = $conexion->prepare("INSERT INTO Lecciones(ID_Curso, ID_TituloLecciones) VALUES (:ID_Curso, :ID_TituloLecciones);");
     $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
-    $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTitulolLeccion); 
+    $sentenciaSQL->bindParam(':ID_TituloLecciones', $lastID); 
     $sentenciaSQL->execute();
+
+
+   
+
+    
+
+    
+
+
+    
 
 
     echo "presionado boton Agregar";
@@ -55,6 +67,25 @@ switch($accion){
     case "Cancelar";
     echo "presionado boton Cancelar";
     break;
+
+    case "Seleccionar";
+    //echo "presionado boton Seleccionar";
+    break;
+
+    case "Borrar";
+    //echo "presionado boton Borrar";
+    $sentenciaSQL = $conexion->prepare("DELETE FROM Lecciones WHERE ID_Leccion = :ID_Leccion;");
+    $sentenciaSQL->bindParam(':ID_Leccion', $txtIDLeccion);
+    $sentenciaSQL->execute();   
+    $sentenciaSQL = $conexion->prepare("DELETE FROM TituloLecciones WHERE ID_TituloLecciones = :ID_TituloLecciones;");
+    $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTituloLeccion);
+    $sentenciaSQL->execute();   
+
+
+
+    break;
+
+
 }
 
 
@@ -206,10 +237,11 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                             <form method="post">
 
-                            <input type="text" name="txtIDLeccion" id="txtIDLeccion" value="<?php echo $Lecciones['ID_Leccion']?>"/>
+                            <input type="hidden" name="txtIDLeccion" id="txtIDLeccion" value="<?php echo $Lecciones['ID_Leccion']?>"/>
                             
-                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+                            <button type="sumbit" name="accion" value="Seleccionar" class="btn btn-primary">Seleccionar</button>
 
+                            <button type="sumbit" name="accion" value="Borrar" class="btn btn-danger">Borrar</button>
                             </form>
 
                         </td>

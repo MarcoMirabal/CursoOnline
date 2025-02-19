@@ -28,10 +28,10 @@ switch($accion){
     $sentenciaSQL->bindParam(':Titulo', $txtTituloCurso);
     $sentenciaSQL->bindParam(':Descripcion', $txtDescripcionCurso); 
     $sentenciaSQL->execute();
-
+    $lastID = $conexion->lastInsertId();
 
     $sentenciaSQL = $conexion->prepare("INSERT INTO Curso(ID_TituloCurso) VALUES (:ID_TituloCurso);");
-    $sentenciaSQL->bindParam(':ID_TituloCurso', $txtIDTituloCurso);
+    $sentenciaSQL->bindParam(':ID_TituloCurso', $lastID);
     $sentenciaSQL->execute();
 
     echo "presionado boton Agregar";
@@ -43,6 +43,20 @@ switch($accion){
 
     case "Cancelar";
     echo "presionado boton Cancelar";
+    break;
+
+    case "Seleccionar";
+    //echo "presionado boton Seleccionar";
+    break;
+
+    case "Borrar";
+    //echo "presionado boton Borrar";
+    $sentenciaSQL = $conexion->prepare("DELETE FROM Curso WHERE ID_Curso = :ID_Curso;");
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+    $sentenciaSQL->execute();   
+    $sentenciaSQL = $conexion->prepare("DELETE FROM TituloCurso WHERE ID_TituloCurso = :ID_TituloCurso;");
+    $sentenciaSQL->bindParam(':ID_TituloCurso', $txtIDTituloCurso);
+    $sentenciaSQL->execute();   
     break;
 }
 
@@ -187,9 +201,12 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                             <form method="post">
 
-                            <input type="text" name="txtIDCurso" id="txtIDCurso" value="<?php echo $Cursos['ID_Curso']?>"/>
                             
-                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+                            <input type="hidden" name="txtIDCurso" id="txtIDCurso" value="<?php echo $Cursos['ID_Curso']?>"/>
+                            
+                            <button type="sumbit" name="accion" value="Seleccionar" class="btn btn-primary">Seleccionar</button>
+
+                            <button type="sumbit" name="accion" value="Borrar" class="btn btn-danger">Borrar</button>
 
                             </form>
 

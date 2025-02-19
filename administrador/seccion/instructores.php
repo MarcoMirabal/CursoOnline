@@ -34,15 +34,17 @@ switch($accion){
         
         $sentenciaSQL->execute();
 
+        $lastID = $conexion->lastInsertId();
+
         $sentenciaSQL = $conexion->prepare("INSERT INTO NombreInstructor(ID_Instructor, NombreInstructor) VALUES (:ID_Instructor, :NombreInstructor);");
-        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor); 
+        $sentenciaSQL->bindParam(':ID_Instructor', $lastID); 
         $sentenciaSQL->bindParam(':NombreInstructor', $txtNombreInstructor); 
 
         $sentenciaSQL->execute();
 
         $sentenciaSQL = $conexion->prepare("INSERT INTO ApellidoInstructor(ID_Instructor, ApellidoInstructor) VALUES (:ID_Instructor, :ApellidoInstructor);");
        
-        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor); 
+        $sentenciaSQL->bindParam(':ID_Instructor', $lastID); 
         $sentenciaSQL->bindParam(':ApellidoInstructor', $txtApellidoInstructor); 
         
         $sentenciaSQL->execute();
@@ -60,6 +62,26 @@ switch($accion){
 
         case "Cancelar";
         echo "presionado boton Cancelar";
+        break;
+
+        case "Seleccionar";
+        //echo "presionado boton Seleccionar";
+        break;
+
+        case "Borrar";
+       // echo "presionado boton Borrar";
+      
+       $sentenciaSQL = $conexion->prepare("DELETE FROM NombreInstructor WHERE ID_Instructor = :ID_Instructor;");
+       $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+       $sentenciaSQL->execute();   
+       $sentenciaSQL = $conexion->prepare("DELETE FROM ApellidoInstructor WHERE ID_Instructor = :ID_Instructor;");
+       $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+       $sentenciaSQL->execute();   
+       $sentenciaSQL = $conexion->prepare("DELETE FROM Instructores WHERE ID_Instructor = :ID_Instructor;");
+       $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+       $sentenciaSQL->execute();   
+
+
         break;
 }
 
@@ -213,9 +235,11 @@ $listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                             <form method="post">
 
-                            <input type="text" name="txtIDInstructor" id="txtIDInstructor" value="<?php echo $Instructores['ID_Instructor']?>"/>
+                            <input type="hidden" name="txtIDInstructor" id="txtIDInstructor" value="<?php echo $Instructores['ID_Instructor']?>"/>
                             
-                            <input type="sumbit" name="accion" value="Borrar" class="btn btn-danger"/>
+                            <button type="sumbit" name="accion" value="Seleccionar" class="btn btn-primary">Seleccionar</button>
+
+                            <button type="sumbit" name="accion" value="Borrar" class="btn btn-danger">Borrar</button>
 
                             </form>
 
