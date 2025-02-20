@@ -5,40 +5,64 @@
 <?php
     include("administrador/config/bd.php");
 
-    $sentenciaSQL = $conexion->prepare("SELECT c.ID_Curso, c.ID_TituloCurso, tc.Titulo, tc.Descripcion
-    FROM Curso AS c
-    INNER JOIN TituloCurso AS tc
-    ON tc.ID_TituloCurso = c.ID_TituloCurso;");
+    $sentenciaSQL = $conexion->prepare("SELECT l.ID_Leccion, l.ID_TituloLecciones, 
+                                    l.ID_Curso, tl.Titulo, tl.Contenido
+                                    FROM Lecciones AS l
+                                    INNER JOIN TituloLecciones AS tl 
+                                    ON tl.ID_TituloLecciones = l.ID_TituloLecciones;");
 $sentenciaSQL->execute();
-$listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+$listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 
 
 ?>
+
 <?php 
-    foreach($listaCurso as $curso){
+    foreach($listaLecciones as $leccion){
 
     
 ?>
-
 
 <div class="col-md-6">
     
 <div class="card">
 
-<div class="card-header">Relación con los cursos y estudiantes</div>
+<div class="card-header">
+
+
+    <img
+        src="image source"
+        class="img-fluid rounded-top"
+        alt=""
+    />
+    
+
+    <img  src="img/curso_icono.png" style="height: 100px; width:100px;"class="card-img-top rounded mx-auto d-block" alt="...">
+
+
+    <h4 class="card-subtitle mb-2 text-body-">
+    Titulo: <?php echo $leccion['Titulo']?>
+    </h4>
+   
+</div>
 <div class="card-body">
 
     <h5 class="card-title">Descripcion</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text"><?php echo $leccion['Contenido']?></p>
+
+
+    
+    
 
 </div>
 </div>
+<br>
 </div>
 
 
 <?php } ?>
+
 
 
 <?php include("template/pie.php");
