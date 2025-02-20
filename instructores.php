@@ -27,28 +27,18 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     
 <div class="card">
 
-<div class="card-header">
-
-
-    <h4 card-subtitle mb-2 text-body-secondary>
-    Titulo: <?php echo $curso['Titulo']?>
-    </h4>
-   
-</div>
+<div class="card-header">Relación con los cursos y estudiantes</div>
 <div class="card-body">
 
     <h5 class="card-title">Descripcion</h5>
-    <p class="card-text"><?php echo $curso['Descripcion']?></p>
-    
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
 </div>
 </div>
-<br>
 </div>
 
 
 <?php } ?>
-
 
 
 <?php include("template/pie.php");

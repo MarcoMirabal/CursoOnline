@@ -5,15 +5,15 @@
 
 <div class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Minuto donde me quedé: 1:01:39hs o menos</h1>
+        <h1 class="display-5 fw-bold">Bienvenido, <?php echo $nombreUsuario;?></h1>
         <p class="col-md-8 fs-4">
-            Lo último que hice fue agregar un "b5 card header foot" en donde los formularios tienen un marco al rededor
-            junto al título de lo que es el formulario en sí (por ejemplo, en lecciones.php el formulario tiene como título "Datos de la 
-            lección:") Y bueno, ahi nos vemos :P
+            En esta sección va a poder gestionar la información de la Base de Datos CursoOnline.
         </p>
-        <button class="btn btn-primary btn-lg" type="button">
-            Example button
-        </button>
+        <p>Nota: Si bien funciona el CRUD, hay (por lo menos) un detalle; los atributos multivaluados no se han respetado 
+            correctamente, aunque la BD tenga las tablas creadas en la 1era forma normal. Además, el usuario no está vinculado
+            con el de la BD. 
+        </p>
+       
     </div>
 </div>
 

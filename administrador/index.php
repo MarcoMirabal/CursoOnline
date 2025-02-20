@@ -74,6 +74,7 @@ if($_POST){
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            <a type="submit" href="../index.php" class="btn btn-secondary">Volver al Curso online</a>
                         </div>
                     </form>
                 </div>
