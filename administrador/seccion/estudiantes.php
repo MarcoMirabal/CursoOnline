@@ -62,7 +62,7 @@ switch($accion){
     $sentenciaSQL->execute();
 
 
-
+    header("Location:estudiantes.php");
     //echo "presionado boton Agregar";
     break;
 
@@ -121,13 +121,19 @@ $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
 $sentenciaSQL->execute();
 
 
-
+header("Location:estudiantes.php");
 
 
     break;
 
     case "Cancelar";
-    echo "presionado boton Cancelar";
+
+
+    //echo "presionado boton Cancelar";
+    header("Location:estudiantes.php");
+
+
+
     break;
 
     case "Seleccionar";
@@ -160,7 +166,7 @@ $Estudiantes=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
 
 
 
-
+   
 
     break;
 
@@ -179,6 +185,12 @@ $Estudiantes=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
    $sentenciaSQL = $conexion->prepare("DELETE FROM Estudiantes WHERE ID_Estudiante = :ID_Estudiante;");
    $sentenciaSQL->bindParam(':ID_Estudiante', $txtIDEstudiante);
    $sentenciaSQL->execute();   
+
+
+   header("Location:estudiantes.php");
+
+
+
     break;
 
 
@@ -217,27 +229,27 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 <div class = "form-group">
 <label for="txtIDEstudiante">ID:</label>
-<input type="text" class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID">
+<input type="text" required readonly class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID">
 </div>
 
 <div class = "form-group">
 <label for="txtNombreEstudiante">Nombre:</label>
-<input type="text" class="form-control" value="<?php echo $txtNombreEstudiante?>"  name="txtNombreEstudiante" id="txtNombreEstudiante" placeholder="Nombre del Estudiante">
+<input type="text" required class="form-control" value="<?php echo $txtNombreEstudiante?>"  name="txtNombreEstudiante" id="txtNombreEstudiante" placeholder="Nombre del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtApellidoEstudiante">Apellido:</label>
-<input type="text" class="form-control"  value="<?php echo $txtApellidoEstudiante?>"  name="txtApellidoEstudiante" id="txtApellidoEstudiante" placeholder="Apellido del Estudiante">
+<input type="text" required class="form-control"  value="<?php echo $txtApellidoEstudiante?>"  name="txtApellidoEstudiante" id="txtApellidoEstudiante" placeholder="Apellido del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtnumCelularEstudiante">Numero Celular:</label>
-<input type="tel" class="form-control"  value="<?php echo $txtnumCelularEstudiante?>" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
+<input type="tel" required class="form-control"  value="<?php echo $txtnumCelularEstudiante?>" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtEmailEstudiante">Email:</label>
-<input type="email" class="form-control"  value="<?php echo $txtEmailEstudiante?>"  name="txtEmailEstudiante" id="txtEmailEstudiante" placeholder="Email del Estudiante(solo puede ingresar uno)">
+<input type="email" required class="form-control"  value="<?php echo $txtEmailEstudiante?>"  name="txtEmailEstudiante" id="txtEmailEstudiante" placeholder="Email del Estudiante(solo puede ingresar uno)">
 </div>
 
 <div class = "form-group">
@@ -254,6 +266,7 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <button
     type="sumbit"
     name="accion"
+    <?php echo ($accion=="Seleccionar")?"disabled":"";?> 
     value="Agregar"
     class="btn btn-success"
 >
@@ -262,6 +275,7 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <button
     type="sumbit"
     name="accion"
+    <?php echo ($accion!="Seleccionar")?"disabled":"";?> 
     value="Modificar"
     class="btn btn-warning"
 >
@@ -270,6 +284,7 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <button
     type="sumbit"
     name="accion"
+    <?php echo ($accion!="Seleccionar")?"disabled":"";?> 
     value="Cancelar"
     class="btn btn-info"
 >

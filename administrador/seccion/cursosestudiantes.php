@@ -29,6 +29,9 @@ $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
 $sentenciaSQL->execute();
 
 
+header("Location:cursosestudiantes.php");
+
+
 
    // echo "presionado boton Agregar";
     break;
@@ -43,11 +46,19 @@ $sentenciaSQL->execute();
    $sentenciaSQL->execute();
 
 
-
+   header("Location:cursosestudiantes.php");
+   
     break;
 
     case "Cancelar";
-    echo "presionado boton Cancelar";
+
+
+    //echo "presionado boton Cancelar";
+    header("Location:cursosestudiantes.php");
+
+
+
+
     break;
 
     case "Seleccionar";
@@ -69,6 +80,9 @@ $sentenciaSQL->execute();
    $sentenciaSQL = $conexion->prepare("DELETE FROM CursoEstudiante WHERE ID_Curso = :ID_Curso;");
    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
    $sentenciaSQL->execute();   
+
+
+   header("Location:cursosestudiantes.php");
     break;
 }
 
@@ -101,18 +115,19 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class = "form-group">
     <label for="txtIDEstudiante">ID del Estudiante:</label>
-    <input type="text" class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID del Estudiante">
+    <input type="text" required class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID del Estudiante">
     </div>
 
     <div class = "form-group">
     <label for="txtIDCurso">ID del Curso:</label>
-    <input type="text" class="form-control" value="<?php echo $txtIDCurso?>"  name="txtIDCurso" id="txtIDCurso" placeholder="ID del Curso">
+    <input type="text" required class="form-control" value="<?php echo $txtIDCurso?>"  name="txtIDCurso" id="txtIDCurso" placeholder="ID del Curso">
     </div>
     
     <div class="btn-group" role="group" aria-label="Button group name">
     <button
         type="sumbit"
         name="accion"
+        <?php echo ($accion=="Seleccionar")?"disabled":"";?> 
         value="Agregar"
         class="btn btn-success"
     >
@@ -121,6 +136,7 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <button
         type="sumbit"
         name="accion"
+        <?php echo ($accion!="Seleccionar")?"disabled":"";?> 
         value="Modificar"
         class="btn btn-warning"
     >
@@ -129,6 +145,7 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <button
         type="sumbit"
         name="accion"
+        <?php echo ($accion!="Seleccionar")?"disabled":"";?> 
         value="Cancelar"
         class="btn btn-info"
     >

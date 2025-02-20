@@ -1,12 +1,13 @@
 <?php
     $host = 'A0AFBD11C605\SQLEXPRESS';
     $bd = 'CursoOnline';
-    
+    $usuario = 'root';
+    $contrasenia = '';
 
 
     try {
 
-        $conexion = new PDO ("sqlsrv:Server=$host;Database=$bd;", NULL, NULL);
+        $conexion = new PDO ("sqlsrv:Server=$host;Database=$bd;", $usuario, $contrasenia);
 
         
 
