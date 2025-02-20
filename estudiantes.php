@@ -5,12 +5,17 @@
 <?php
     include("administrador/config/bd.php");
 
-    $sentenciaSQL = $conexion->prepare("SELECT c.ID_Curso, c.ID_TituloCurso, tc.Titulo, tc.Descripcion
-    FROM Curso AS c
-    INNER JOIN TituloCurso AS tc
-    ON tc.ID_TituloCurso = c.ID_TituloCurso;");
+    $sentenciaSQL = $conexion->prepare("SELECT e.ID_Estudiante, ne.NombreEstudiante, ae.ApellidoEstudiante, 
+                                    ce.numCelularEstudiante, e.Email, e.Calificacion, e.FechaAsignacion
+                                    FROM Estudiantes AS e
+                                    INNER JOIN NombreEstudiante AS ne
+                                    ON e.ID_Estudiante = ne.ID_Estudiante
+                                    INNER JOIN ApellidoEstudiante AS ae
+                                    ON e.ID_Estudiante = ae.ID_Estudiante
+                                    INNER JOIN numCelularEstudiante AS ce
+                                    ON e.ID_Estudiante = ce.ID_Estudiante;");
 $sentenciaSQL->execute();
-$listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+$listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 

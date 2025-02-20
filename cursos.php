@@ -39,6 +39,9 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <h5 class="card-title">Descripcion</h5>
     <p class="card-text"><?php echo $curso['Descripcion']?></p>
+
+
+    
     
 
 </div>
