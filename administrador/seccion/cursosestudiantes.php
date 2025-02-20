@@ -43,6 +43,16 @@ $sentenciaSQL->execute();
 
     case "Seleccionar";
    // echo "presionado boton Seleccionar";
+    $sentenciaSQL = $conexion->prepare("SELECT * FROM CursoEstudiante WHERE ID_Curso = :ID_Curso;");
+    $sentenciaSQL->execute();
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+
+    $CursoEstudiante=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+    $txtIDCurso=$CursoEstudiante['ID_Curso'];
+    $txtIDEstudiante=$CursoEstudiante['ID_Estudiante'];
+
+
+
     break;
 
     case "Borrar";
@@ -58,6 +68,7 @@ $sentenciaSQL = $conexion->prepare("SELECT * FROM CursoEstudiante");
 $sentenciaSQL->execute();
 $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
+ 
 
 
 
@@ -166,7 +177,7 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                         <td>
                             
-                            Seleccionar | Borrar 
+                            
 
                             <form method="post">
 

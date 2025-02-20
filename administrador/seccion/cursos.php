@@ -46,9 +46,33 @@ switch($accion){
     echo "presionado boton Cancelar";
     break;
 
+
+
+
+
+
     case "Seleccionar";
     //echo "presionado boton Seleccionar";
+    $sentenciaSQL = $conexion->prepare("SELECT c.ID_Curso, c.ID_TituloCurso, tc.Titulo, tc.Descripcion
+    FROM Curso AS c
+    INNER JOIN TituloCurso AS tc
+    ON tc.ID_TituloCurso = c.ID_TituloCurso
+    WHERE c.ID_Curso = :ID_Curso;");
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+    $sentenciaSQL->execute();
+
+    $Cursos=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
+    $txtIDTituloCurso=$Cursos['c.ID_TituloCurso'];
+    $txtTituloCurso=$Cursos['tc.Titulo'];
+    $txtDescripcionCurso=$Cursos['tc.Descripcion'];
     break;
+    
+
+
+
+
+
+
 
     case "Borrar";
     //echo "presionado boton Borrar";
@@ -198,7 +222,7 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
                         <td>
                             
-                            Seleccionar | Borrar 
+                           
 
                             <form method="post">
 
