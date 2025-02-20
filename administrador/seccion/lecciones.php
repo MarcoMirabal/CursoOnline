@@ -57,11 +57,30 @@ switch($accion){
     
 
 
-    echo "presionado boton Agregar";
+    //echo "presionado boton Agregar";
     break;
 
     case "Modificar";
-    echo "presionado boton Modificar";
+    //echo "presionado boton Modificar";
+
+    $sentenciaSQL = $conexion->prepare("UPDATE TituloLecciones SET Titulo=:Titulo, Contenido=:Contenido
+                WHERE ID_TituloLecciones = :ID_TituloLecciones;");
+    $sentenciaSQL->bindParam(':Titulo', $txtTituloLeccion); 
+    $sentenciaSQL->bindParam(':Contenido', $txtContenidoLeccion); 
+    $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTituloLeccion); 
+    $sentenciaSQL->execute();
+
+  
+
+    $sentenciaSQL = $conexion->prepare("UPDATE Lecciones SET ID_Curso=:ID_Curso, ID_TituloLecciones=:ID_TituloLecciones
+        WHERE ID_leccion = :ID_Leccion");
+    $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso); 
+    $sentenciaSQL->bindParam(':ID_TituloLecciones', $txtIDTituloLeccion); 
+    $sentenciaSQL->bindParam(':ID_Leccion', $txtIDLeccion); 
+    $sentenciaSQL->execute();
+
+
+
     break;
 
     case "Cancelar";

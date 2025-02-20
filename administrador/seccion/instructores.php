@@ -53,11 +53,57 @@ switch($accion){
 
 
 
-        echo "presionado boton Agregar";
+       // echo "presionado boton Agregar";
         break;
 
         case "Modificar";
-        echo "presionado boton Modificar";
+        //echo "presionado boton Modificar";
+
+        $sentenciaSQL = $conexion->prepare("UPDATE Instructores
+                SET Especialidad=:Especialidad,
+                Email=:Email,
+                ID_Curso=:ID_Curso
+                WHERE ID_Instructor=:ID_Instructor;
+    ");
+        $sentenciaSQL->bindParam(':Especialidad', $txtEspecialidadInstructor);
+        $sentenciaSQL->bindParam(':Email', $txtEmailInstructor);
+        $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+
+
+        
+        
+        $sentenciaSQL->execute();
+
+
+    //Modificar la tabla NombreInstructor
+
+
+        // $lastID = $conexion->lastInsertId(); no se usa porque no estamos insertando datos, solo actualizarlos. En su lugar ponemos txtIDInstructor 
+
+        $sentenciaSQL = $conexion->prepare("UPDATE NombreInstructor
+        SET NombreInstructor=:NombreInstructor WHERE ID_Instructor=:ID_Instructor;
+    ");
+
+        $sentenciaSQL->bindParam(':NombreInstructor', $txtNombreInstructor);
+        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+
+        $sentenciaSQL->execute();
+
+        //Modificar la tabla ApellidoInsturctor
+
+        $sentenciaSQL = $conexion->prepare("UPDATE ApellidoInstructor
+        SET ApellidoInstructor=:ApellidoInstructor WHERE ID_Instructor=:ID_Instructor;  
+    ");
+        $sentenciaSQL->bindParam(':ApellidoInstructor', $txtApellidoInstructor);
+        $sentenciaSQL->bindParam(':ID_Instructor', $txtIDInstructor);
+
+        $sentenciaSQL->execute();
+
+
+
+
+
         break;
 
         case "Cancelar";
