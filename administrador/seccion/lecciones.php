@@ -80,11 +80,11 @@ switch($accion){
 $sentenciaSQL->execute();
 
 $Lecciones=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
-    $txtIDLeccion=$Lecciones['l.ID_Leccion'];
-    $txtIDTituloLeccion=$Lecciones['l.ID_TituloLecciones'];
-    $txtIDCurso=$Lecciones['l.ID_Curso'];
-    $txtTituloLeccion=$Lecciones['tl.Titulo'];
-    $txtContenidoLeccion=$Lecciones['tl.Contenido'];
+    $txtIDLeccion=$Lecciones['ID_Leccion'];
+    $txtIDTituloLeccion=$Lecciones['ID_TituloLecciones'];
+    $txtIDCurso=$Lecciones['ID_Curso'];
+    $txtTituloLeccion=$Lecciones['Titulo'];
+    $txtContenidoLeccion=$Lecciones['Contenido'];
    
 
 
@@ -137,28 +137,28 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class = "form-group">
     <label for="txtIDLeccion">ID:</label>
-    <input type="text" class="form-control" name="txtIDLeccion" id="txtIDLeccion" placeholder="ID">
+    <input type="text" class="form-control"   value="<?php echo $txtIDLeccion?>" name="txtIDLeccion" id="txtIDLeccion" placeholder="ID">
     </div>
 
     <div class = "form-group">
     <label for="txtIDTituloLeccion">ID Titulo:</label>
-    <input type="text" class="form-control" name="txtIDTituloLeccion" id="txtIDTituloLeccion" placeholder="ID TituloLeccion">
+    <input type="text" class="form-control" value="<?php echo $txtIDTituloLeccion?>" name="txtIDTituloLeccion" id="txtIDTituloLeccion" placeholder="ID TituloLeccion">
     </div>
 
     <div class = "form-group">
     <label for="txtIDCurso">Curso asignado:</label>
-    <input type="int" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingresar ID del curso asignado">
+    <input type="int" class="form-control" value="<?php echo $txtIDCurso?>" name="txtIDCurso" id="txtIDCurso" placeholder="Ingresar ID del curso asignado">
     </div>
 
 
     <div class = "form-group">
     <label for="txtTituloLeccion">Titulo:</label>
-    <input type="text" class="form-control" name="txtTituloLeccion" id="txtTituloLeccion" placeholder="Titulo de la Leccion">
+    <input type="text" class="form-control" value="<?php echo $txtTituloLeccion?>" name="txtTituloLeccion" id="txtTituloLeccion" placeholder="Titulo de la Leccion">
     </div>
 
     <div class = "form-group">
     <label for="txtContenidoLeccion">Contenido:</label>
-    <input type="text" class="form-control" name="txtContenidoLeccion" id="txtContenidoLeccion" placeholder="Contenido de la Leccion">
+    <input type="text" class="form-control" value="<?php echo $txtContenidoLeccion?>" name="txtContenidoLeccion" id="txtContenidoLeccion" placeholder="Contenido de la Leccion">
     </div>
 
     

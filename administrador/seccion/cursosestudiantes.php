@@ -44,8 +44,8 @@ $sentenciaSQL->execute();
     case "Seleccionar";
    // echo "presionado boton Seleccionar";
     $sentenciaSQL = $conexion->prepare("SELECT * FROM CursoEstudiante WHERE ID_Curso = :ID_Curso;");
-    $sentenciaSQL->execute();
     $sentenciaSQL->bindParam(':ID_Curso', $txtIDCurso);
+    $sentenciaSQL->execute();
 
     $CursoEstudiante=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
     $txtIDCurso=$CursoEstudiante['ID_Curso'];
@@ -92,12 +92,12 @@ $listaCursoEstudiante=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class = "form-group">
     <label for="txtIDEstudiante">ID del Estudiante:</label>
-    <input type="text" class="form-control" name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID del Estudiante">
+    <input type="text" class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID del Estudiante">
     </div>
 
     <div class = "form-group">
     <label for="txtIDCurso">ID del Curso:</label>
-    <input type="text" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="ID del Curso">
+    <input type="text" class="form-control" value="<?php echo $txtIDCurso?>"  name="txtIDCurso" id="txtIDCurso" placeholder="ID del Curso">
     </div>
     
     <div class="btn-group" role="group" aria-label="Button group name">

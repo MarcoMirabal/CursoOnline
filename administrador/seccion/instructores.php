@@ -84,12 +84,12 @@ switch($accion){
 
 
         $Instructores=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
-    $txtIDInstructor=$Instructores['i.ID_Instructor'];
-    $txtNombreEstudiante=$Instructores['ni.NombreInstructor'];
-    $txtApellidoEstudiante=$Instructores['ai.ApellidoInstructor'];
-    $txtEspecialidadInstructor=$Instructores['i.Especialidad'];
-    $txtEmailInstructor=$Instructores['i.Email'];
-    $txtIDCurso=$Instructores['i.ID_Curso'];
+    $txtIDInstructor=$Instructores['ID_Instructor'];
+    $txtNombreInstructor=$Instructores['NombreInstructor'];
+    $txtApellidoInstructor=$Instructores['ApellidoInstructor'];
+    $txtEspecialidadInstructor=$Instructores['Especialidad'];
+    $txtEmailInstructor=$Instructores['Email'];
+    $txtIDCurso=$Instructores['ID_Curso'];
     
 
 
@@ -144,32 +144,40 @@ $listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class = "form-group">
     <label for="txtIDInstructor">ID:</label>
-    <input type="text" class="form-control" name="txtIDInstructor" id="txtIDInstructor" placeholder="ID">
+    <input type="text" class="form-control"  value="<?php echo $txtIDInstructor?>"  name="txtIDInstructor" id="txtIDInstructor" placeholder="ID">
     </div>
 
     <div class = "form-group">
     <label for="txtNombreInstructor">Nombre:</label>
-    <input type="text" class="form-control" name="txtNombreInstructor" id="txtNombreInstructor" placeholder="Nombre del Instructor">
+    <input type="text" class="form-control" value="<?php echo $txtNombreInstructor?>" name="txtNombreInstructor" id="txtNombreInstructor" placeholder="Nombre del Instructor">
     </div>
 
     <div class = "form-group">
     <label for="txtApellidoInstructor">Apellido:</label>
-    <input type="text" class="form-control" name="txtApellidoInstructor" id="txtApellidoInstructor" placeholder="Apellido del instructor">
+    <input type="text" class="form-control" value="<?php echo $txtApellidoInstructor?>" name="txtApellidoInstructor" id="txtApellidoInstructor" placeholder="Apellido del Instructor">
     </div>
+
+    <!--  
+    <div class = "form-group">
+    <label for="txtApellidoInstructor">Apellido:</label>
+    <input type="text" class="form-control" value=" <?php //echo $txtApellidoInstructor?> " name="txtApellidoInstructor" id="txtApellidoInstructor" placeholder="Apellido del instructor">
+    </div>
+
+    !-->
 
     <div class = "form-group">
     <label for="txtEspecialidadInstructor">Especialidad:</label>
-    <input type="int" class="form-control" name="txtEspecialidadInstructor" id="txtEspecialidadInstructor" placeholder="Especialidad del Instructor">
+    <input type="int" class="form-control" value="<?php echo $txtEspecialidadInstructor?>"   name="txtEspecialidadInstructor" id="txtEspecialidadInstructor" placeholder="Especialidad del Instructor">
     </div>
 
     <div class = "form-group">
     <label for="txtEmailInstructor">Email:</label>
-    <input type="email" class="form-control" name="txtEmailInstructor" id="txtEmailInstructor" placeholder="Email del instructor (solo puede tener uno)">
+    <input type="email" class="form-control" value="<?php echo $txtEmailInstructor?>"  name="txtEmailInstructor" id="txtEmailInstructor" placeholder="Email del instructor (solo puede tener uno)">
     </div>
 
     <div class = "form-group">
     <label for="txtIDCurso">Curso Asignado:</label>
-    <input type="int" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="Ingrese el ID del curso asignado">
+    <input type="int" class="form-control" value="<?php echo $txtIDCurso?>"  name="txtIDCurso" id="txtIDCurso" placeholder="Ingrese el ID del curso asignado">
     </div>
 
 

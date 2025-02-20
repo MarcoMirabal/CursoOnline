@@ -62,9 +62,9 @@ switch($accion){
     $sentenciaSQL->execute();
 
     $Cursos=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
-    $txtIDTituloCurso=$Cursos['c.ID_TituloCurso'];
-    $txtTituloCurso=$Cursos['tc.Titulo'];
-    $txtDescripcionCurso=$Cursos['tc.Descripcion'];
+    $txtIDTituloCurso=$Cursos['ID_TituloCurso'];
+    $txtTituloCurso=$Cursos['Titulo'];
+    $txtDescripcionCurso=$Cursos['Descripcion'];
     break;
     
 
@@ -120,23 +120,23 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <div class = "form-group">
     <label for="txtIDCurso">ID:</label>
-    <input type="text" class="form-control" name="txtIDCurso" id="txtIDCurso" placeholder="ID">
+    <input type="text" class="form-control" value="<?php echo $txtIDCurso?>"  name="txtIDCurso" id="txtIDCurso" placeholder="ID">
     </div>
 
     <div class = "form-group">
     <label for="txtIDTituloCurso">ID Titulo:</label>
-    <input type="text" class="form-control" name="txtIDTituloCurso" id="txtIDTituloCurso" placeholder="ID TituloCurso">
+    <input type="text" class="form-control" value="<?php echo $txtIDTituloCurso?>"  name="txtIDTituloCurso" id="txtIDTituloCurso" placeholder="ID TituloCurso">
     </div>
 
 
     <div class = "form-group">
     <label for="txtTituloCurso">Titulo:</label>
-    <input type="text" class="form-control" name="txtTituloCurso" id="txtTituloCurso" placeholder="Titulo del curso">
+    <input type="text" class="form-control" value="<?php echo $txtTituloCurso?>"  name="txtTituloCurso" id="txtTituloCurso" placeholder="Titulo del curso">
     </div>
 
     <div class = "form-group">
     <label for="txtDescripcionCurso">Descripcion:</label>
-    <input type="text" class="form-control" name="txtDescripcionCurso" id="txtDescripcionCurso" placeholder="Descripcion del curso">
+    <input type="text" class="form-control" value="<?php echo $txtDescripcionCurso?>"  name="txtDescripcionCurso" id="txtDescripcionCurso" placeholder="Descripcion del curso">
     </div>
 
     

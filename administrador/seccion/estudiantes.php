@@ -93,13 +93,13 @@ switch($accion){
 $sentenciaSQL->execute();
 
 $Estudiantes=$sentenciaSQL->fetch(PDO::FETCH_LAZY);
-    $txtIDEstudiante=$Estudiantes['e.ID_Estudiante'];
-    $txtNombreEstudiante=$Estudiantes['ne.NombreEstudiante'];
-    $txtApellidoEstudiante=$Estudiantes['ae.ApellidoEstudiante'];
-    $txtnumCelularEstudiante=$Estudiantes['ce.numCelularEstudiante'];
-    $txtEmailEstudiante=$Estudiantes['e.Email'];
-    $txtCalificacionEstudiante=$Estudiantes['e.Calificacion'];
-    $txtFechaAsignacionEstudiante=$Estudiantes['e.FechaAsignacion'];
+    $txtIDEstudiante=$Estudiantes['ID_Estudiante'];
+    $txtNombreEstudiante=$Estudiantes['NombreEstudiante'];
+    $txtApellidoEstudiante=$Estudiantes['ApellidoEstudiante'];
+    $txtnumCelularEstudiante=$Estudiantes['numCelularEstudiante'];
+    $txtEmailEstudiante=$Estudiantes['Email'];
+    $txtCalificacionEstudiante=$Estudiantes['Calificacion'];
+    $txtFechaAsignacionEstudiante=$Estudiantes['FechaAsignacion'];
 
 
 
@@ -161,37 +161,37 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 <div class = "form-group">
 <label for="txtIDEstudiante">ID:</label>
-<input type="text" class="form-control" name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID">
+<input type="text" class="form-control" value="<?php echo $txtIDEstudiante?>"  name="txtIDEstudiante" id="txtIDEstudiante" placeholder="ID">
 </div>
 
 <div class = "form-group">
 <label for="txtNombreEstudiante">Nombre:</label>
-<input type="text" class="form-control" name="txtNombreEstudiante" id="txtNombreEstudiante" placeholder="Nombre del Estudiante">
+<input type="text" class="form-control" value="<?php echo $txtNombreEstudiante?>"  name="txtNombreEstudiante" id="txtNombreEstudiante" placeholder="Nombre del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtApellidoEstudiante">Apellido:</label>
-<input type="text" class="form-control" name="txtApellidoEstudiante" id="txtApellidoEstudiante" placeholder="Apellido del Estudiante">
+<input type="text" class="form-control"  value="<?php echo $txtApellidoEstudiante?>"  name="txtApellidoEstudiante" id="txtApellidoEstudiante" placeholder="Apellido del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtnumCelularEstudiante">Numero Celular:</label>
-<input type="tel" class="form-control" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
+<input type="tel" class="form-control"  value="<?php echo $txtnumCelularEstudiante?>" name="txtnumCelularEstudiante" id="txtnumCelularEstudiante" placeholder="Telefono del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtEmailEstudiante">Email:</label>
-<input type="email" class="form-control" name="txtEmailEstudiante" id="txtEmailEstudiante" placeholder="Email del Estudiante(solo puede ingresar uno)">
+<input type="email" class="form-control"  value="<?php echo $txtEmailEstudiante?>"  name="txtEmailEstudiante" id="txtEmailEstudiante" placeholder="Email del Estudiante(solo puede ingresar uno)">
 </div>
 
 <div class = "form-group">
 <label for="txtCalificacionEstudiante">Calificacion:</label>
-<input type="text" class="form-control" name="txtCalificacionEstudiante" id="txtCalificacionEstudiante" placeholder="Calificacion del Estudiante">
+<input type="text" class="form-control" value="<?php echo $txtCalificacionEstudiante?>"  name="txtCalificacionEstudiante" id="txtCalificacionEstudiante" placeholder="Calificacion del Estudiante">
 </div>
 
 <div class = "form-group">
 <label for="txtFechaAsignacionEstudiante">FechaAsignacion:</label>
-<input type="date" class="form-control" name="txtFechaAsignacionEstudiante" id="txtFechaAsignacionEstudiante" placeholder="Fecha de Asignacion de la Calificacion">
+<input type="date" class="form-control" value="<?php echo $txtFechaAsignacionEstudiante?>"  name="txtFechaAsignacionEstudiante" id="txtFechaAsignacionEstudiante" placeholder="Fecha de Asignacion de la Calificacion">
 </div>
 
 <div class="btn-group" role="group" aria-label="Button group name">
