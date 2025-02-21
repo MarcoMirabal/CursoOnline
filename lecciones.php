@@ -18,6 +18,9 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<h1 class="display-5 text-center text-success">Lecciones</h1>
+
+
 <?php 
     foreach($listaLecciones as $leccion){
 

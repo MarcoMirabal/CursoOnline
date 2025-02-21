@@ -21,6 +21,9 @@ $listaInstructores=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<h1 class="display-5 text-center text-warning">Instructores</h1>
+
+
 <?php 
     foreach($listaInstructores as $instructor){
 

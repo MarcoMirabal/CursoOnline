@@ -23,6 +23,9 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<h1 class="display-5 text-center text-warning">Estudiantes</h1>
+
+
 <?php 
     foreach($listaEstudiantes as $estudiantes){
 

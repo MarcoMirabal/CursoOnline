@@ -17,11 +17,16 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+
+<h1 class="display-5 text-center">Cursos</h1>
+
 <?php 
     foreach($listaCurso as $curso){
 
     
 ?>
+
+
 
 <div class="col-md-6">
     

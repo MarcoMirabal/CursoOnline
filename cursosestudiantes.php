@@ -23,7 +23,8 @@
 
 ?>
 
-
+<h1 class="display-5 text-center">Lista de los <h1 class="display-5 text-center text-success ">Estudiantes</h1></h1>
+<h1 class="display-5 text-center  ">asignados a  Cursos </h1>
 
 
 

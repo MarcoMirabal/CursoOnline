@@ -25,7 +25,7 @@
 <div style="min-height: 120px;">
   <div class="collapse collapse-horizontal" id="collapseWidthExample">
     <div class="card card-body" style="width: 600px;">
-    <h1 class="display-6">Marco Mirabal</h1>
+    <h1 class="display-6 text-success">Alumno: Marco Mirabal</h1>
     </div>
   </div>
 </div>
