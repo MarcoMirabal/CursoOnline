@@ -32,10 +32,10 @@ $listaEstudiantes=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <div class="col-md-4">
     
 <div class="card" style="width: 18rem;">
-  <img src="img/instructor_icono.png" class="card-img-top" style="padding: 20px;"alt="...">
+  <img src="img/estudiante_icono.png" class="card-img-top" style="padding: 20px;"alt="...">
   <div class="card-body">
     <h5 class="card-title"><?php echo $estudiantes['NombreEstudiante']?> <?php echo $estudiantes['ApellidoEstudiante']?> </h5>
-    <p class="card-text">Numero de Celular:<span class="badge text-bg-warning"><?php echo $estudiantes['numCelularEstudiante']?></span></p>
+    <p class="card-text">Numero de Celular: <span class="badge text-bg-warning"><?php echo $estudiantes['numCelularEstudiante']?></span></p>
     <p class="card-text">Calificación: <span class="badge text-bg-warning"><?php echo $estudiantes['Calificacion']?></span></p>
     <p class="card-text">Fecha de Asignación: <span class="badge text-bg-warning"><?php echo $estudiantes['FechaAsignacion']?></span></p>
 

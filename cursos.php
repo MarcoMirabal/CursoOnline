@@ -30,14 +30,10 @@ $listaCurso=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <div class="card-header">
 
 
-    <img
-        src="image source"
-        class="img-fluid rounded-top"
-        alt=""
-    />
+   
     
 
-    <img  src="img/curso_icono.png" style="height: 100px; width:100px;"class="card-img-top mx-auto d-block" alt="...">
+    <img  src="img/curso_icono.png" style="height: 150px; width:150px;"class="card-img-top mx-auto d-block" alt="...">
     <h4 card-subtitle mb-2 text-body-secondary>
     Titulo: <?php echo $curso['Titulo']?>
     </h4>

@@ -38,7 +38,7 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     />
     
 
-    <img  src="img/leccion_icono.png" style="height: 100px; width:100px;"class="card-img-top rounded mx-auto d-block" alt="...">
+    <img  src="img/leccion_icono.png" style="height: 150px; width:150px;"class="card-img-top rounded mx-auto d-block" alt="...">
 <br>
 
     <h4 class="card-subtitle mb-2 text-body-">
