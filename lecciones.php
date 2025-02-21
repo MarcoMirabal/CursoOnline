@@ -38,8 +38,8 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     />
     
 
-    <img  src="img/curso_icono.png" style="height: 100px; width:100px;"class="card-img-top rounded mx-auto d-block" alt="...">
-
+    <img  src="img/leccion_icono.png" style="height: 100px; width:100px;"class="card-img-top rounded mx-auto d-block" alt="...">
+<br>
 
     <h4 class="card-subtitle mb-2 text-body-">
     Titulo: <?php echo $leccion['Titulo']?>
@@ -50,6 +50,10 @@ $listaLecciones=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
     <h5 class="card-title">Descripcion</h5>
     <p class="card-text"><?php echo $leccion['Contenido']?></p>
+
+    <h4 class="">Curso Asignado: <span class="badge text-bg-success"><?php echo $leccion['ID_Curso']?></span></h4>
+
+
 
 
     
